@@ -1,0 +1,29 @@
+<section class="heading">
+	<img src="{{ section.settings.image | img_url:'300x300' }}" class="ta-cen" />
+	<div><h3>{{ section.settings.heading }}</h3></div>
+</section>
+
+{% schema %}
+
+{
+	"name":"logo with text",
+	"settings": [
+		{
+			"type":"text",
+			"id":"heading",
+			"label":"Heading"
+		},
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "logo"
+		}
+	],
+	"presets": [
+		{
+			"name":"Logo with text",
+			"category":"image"
+		}
+	]
+}
+{% endschema %}

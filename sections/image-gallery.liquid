@@ -1,0 +1,54 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add the "Image gallery" section in the theme editor.
+
+  Theme Store required settings
+  - Image
+  
+
+  Theme Store optional settings
+  - Button label: label associated with the button
+  - Button link: link of the button
+{%- endcomment -%}
+
+<section class="image-pair flex">
+  {% if section.settings.title != blank %}
+    <h3 class="featured-collection__title">{{ section.settings.title | escape }}</h3>
+  {% endif %}
+
+
+     {% if section.settings.image-one != blank %}
+        <div class="flex-child featured-collection__image flex-child bg-img" style="background-image:url({{ section.settings.image-one | img_url:'1400x800'}})"></div>
+    {% endif %}
+     {% if section.settings.image-two != blank %}
+        <div class="flex-child featured-collection__image bg-img" style="background-image:url({{ section.settings.image-two | img_url:'1400x800'}})"></div>
+    {% endif %}
+</section>
+
+{% schema %}
+      {
+        "name":"image pair",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id":"image-one",
+                "label": "Gallery image (1)"
+        
+        
+              },
+               {
+                "type": "image_picker",
+                "id":"image-two",
+                "label": "Gallery image (2)"
+        
+        
+              }
+        ],
+        "presets": [
+          {
+            "name": "Image pair",
+            "category": "Image"
+          }
+        ]
+      }
+{% endschema %}

@@ -1,0 +1,114 @@
+(function(){
+	document.addEventListener("DOMContentLoaded", function() {
+	var w = window,
+	    d = document,
+	    e = d.documentElement,
+	    g = d.getElementsByTagName('body')[0],
+
+	    //menu transition
+		nav = document.getElementById('nav'),
+		menu_butt = d.getElementById('nav-icon4'),
+		logo = document.getElementById('logo');
+
+
+
+
+
+		menu_butt.onclick = function() { 
+			
+			this.classList.toggle('open');
+			nav.classList.toggle('open');
+			
+
+			if (document.getElementById('dustofgods') ) {
+		
+
+
+
+					var someDiv = document.getElementById('stop-gap'),
+				    distanceToTop = someDiv.getBoundingClientRect().top;
+				   
+				    if (distanceToTop >= 0 ) {
+							if ( this.classList.contains('open') ) {
+								logo.classList.add('filter');
+							} else {
+								logo.classList.remove('filter');
+							}
+
+				    }
+			}
+			
+		}
+
+
+
+
+
+// Index page - color filter 
+
+	if ( document.getElementById('dustofgods') ) {
+		
+
+
+
+
+
+		window.addEventListener('scroll', function(ev) {
+
+		   var someDiv = document.getElementById('stop-gap'),
+		   distanceToTop = someDiv.getBoundingClientRect().top;
+		   if (distanceToTop <= 0 ) {
+		   		logo.classList.add('filter');
+		   } else {
+		   		logo.classList.remove('filter');
+		   }
+		});
+
+	} ///end of index page 
+
+		//product slideshow dot transition
+		if (document.getElementById('shopify-section-product') != null ) {
+				var dots = document.getElementById('dots'),
+					children = dots.children;
+					children[0].classList.add('reveal');
+					document.querySelector('.index-1').classList.add('reveal');
+		
+		
+		
+		
+					for (i = 0; i < children.length; i++ ) {
+				
+		
+						children[i].onclick = function() {
+							var reveal = document.querySelectorAll('.reveal');
+				
+		
+		
+							for (i = 0; i < reveal.length; i++) {
+								document.querySelector('.reveal').classList.remove('reveal');
+		
+							}
+				
+							this.classList.add('reveal');
+		
+				
+		
+							var id = this.id,
+								img = document.querySelector('.' + id );
+							img.classList.add('reveal');
+						}
+					}
+		} //end of product slideshow dot transition
+
+
+
+
+
+
+	//	
+	//end of DOMContentLoaded
+	//
+	});
+	
+
+})();

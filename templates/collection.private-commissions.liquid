@@ -1,0 +1,51 @@
+{% paginate collection.products by 12 %}
+
+
+  <div id="not-home" class="flex wrap">
+    {% for product in collection.products %}
+      <div class='flex-child'>
+        {% if product.featured_image != blank %}
+          <a href="{{ product.url | within: collection }}">
+            <img src="{{ product.featured_image | img_url:'2048x2048'}}" />
+          </a>
+        {% endif %}
+
+        <h2>
+          <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+        </h2>
+         {% if product.description != blank %}
+
+        <p>
+          {{ product.description | escape }}
+
+        </p>
+        {% endif %}
+      </div>
+
+    {% else %}
+      {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
+        {% for i in (1..8) %}
+          <a href="#">
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+          </a>
+
+          <p>
+            <a href="#">{{ 'homepage.onboarding.product_title' | t }}</a>
+          </p>
+
+          <p>
+            {{ 1999 | money }}
+          </p>
+        {% endfor %}
+      {% else %}
+        <p>{{ 'collections.general.no_matches' | t }}</p>
+      {% endif %}
+
+    {% endfor %}
+  </div>
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+{% endpaginate %}

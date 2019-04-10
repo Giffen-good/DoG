@@ -1,0 +1,49 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available in the "Featured Collection" section in the theme editor.
+
+  Theme Store required settings
+  - Collection
+
+  Theme Store optional settings
+  - Heading: title of the featured collection section
+{%- endcomment -%}
+<section class="featured-collection-alt">
+
+  {% if section.settings.description != blank %}
+    <p class="featured-collection__description">{{ section.settings.description | escape }}</p>
+  {% endif %}
+  {% if section.settings.image != blank %}
+
+    <div class="bg-img" style="background-image:url({{ section.settings.image | img_url:'2048x1200'}})"></div>
+  {% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "Featured collection alt",
+    "settings": [
+      
+        {
+        "type": "textarea",
+        "id": "description",
+        "label": "description",
+        "default": "Collection"
+      },
+      {
+        "type": "image_picker",
+        "id":"image",
+        "label": "full width image"
+
+
+      }
+      
+    ],
+    "presets": [
+      {
+        "name": "Featured collection alt",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}
